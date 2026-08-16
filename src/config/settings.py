@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/6.1/ref/settings/
 
 from pathlib import Path
 
+from dmr.settings import Settings
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -37,6 +39,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "dmr",
     "app",
 ]
 
@@ -118,6 +121,13 @@ USE_TZ = True
 STATIC_URL = "static/"
 
 
+DMR_SETTINGS = {
+    Settings.openapi_static_cdn: {
+        # or `@5.32.1`, or whatever other version:
+        "scalar": "https://cdn.jsdelivr.net/npm/@scalar/api-reference",
+    },
+}
+
 # Email
 # https://docs.djangoproject.com/en/6.1/topics/email/#topic-email-configuration
 
@@ -128,3 +138,5 @@ MAILERS = {
 }
 
 AUTH_USER_MODEL = "app.User"
+
+APPEND_SLASH = False

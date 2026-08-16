@@ -3,9 +3,9 @@ name = "dmr-with-django-modern-schemas"
 version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
-requires-python = ">=3.13"
+requires-python = ">=3.12,<3.14"
 dependencies = [
     "django>=6.1",
-    "django-modern-rest>=0.14.0",
+    "django-modern-rest[jwt,msgspec,openapi,pydantic]>=0.14.0",
     "django-modern-schemas>=0.1.0",
 ]

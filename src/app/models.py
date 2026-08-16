@@ -1,7 +1,7 @@
-from datetime import timezone
-
 from django.contrib.auth.models import AbstractUser
 from django.db import models
+from django.db.models import Avg
+from django.utils import timezone
 
 
 class User(AbstractUser): ...
@@ -38,6 +38,24 @@ class Book(models.Model):
 
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
+    def get_author_name(self) -> str | None:
+        """
+        Returns the full name of the author, or None when the book has no one.
+        """
+        return self.author.get_full_name() if self.author else None
+
+    def get_quantity_of_reviews(self) -> int:
+        """
+        Returns the number of reviews written about the book.
+        """
+        return self.review_set.count()
+
+    def get_average_rating(self) -> float | None:
+        """
+        Returns the mean rating of the book, or None when it has no reviews.
+        """
+        return self.review_set.aggregate(average=Avg("rating"))["average"]
 
 
 class Review(models.Model):
