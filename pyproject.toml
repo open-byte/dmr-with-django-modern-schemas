@@ -1,0 +1,11 @@
+[project]
+name = "dmr-with-django-modern-schemas"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "django>=6.1",
+    "django-modern-rest>=0.14.0",
+    "django-modern-schemas>=0.1.0",
+]
