@@ -166,6 +166,7 @@ class BookListController(BaseController):
     )
     def get(self, parsed_query: Query[BookListQueryParams]) -> list[BookSchema]:
 
+        print(f"{parsed_query=}")
         books = Book.objects.select_related("author")
         if parsed_query.author_id:
             books = books.filter(author_id=parsed_query.author_id)
